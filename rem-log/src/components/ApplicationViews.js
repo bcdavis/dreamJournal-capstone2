@@ -1,38 +1,45 @@
-import React from "react"
-import { Route } from "react-router-dom"
-
-/**
- * 
- * Place imports for Journal Provider, Home, EntryForm, and Stats here
- * 
- *
- */
+import React, { useContext } from "react";
+import { Switch, Route, Redirect} from "react-router-dom";
+import { FirebaseContext } from "./fbAuth/FirebaseProvider.js";
+import Login from "./fbAuth/Login.js";
+import Register from "./fbAuth/Register.js";
+import { JournalList } from "./journal/JournalList.js";
+import { JournalListAddForm } from "./journal/JournalLIstAddForm.js";
 
 
 
-export const ApplicationViews = (props) => {
+
+export default function ApplicationViews() {
+    const { isLoggedIn } = useContext(FirebaseContext);
+  
     return (
-        <>
-            <JournalProvider>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-                <Route path="/edit/:entryId(\d+)">
-                    <EntryForm />
-                </Route>
-                <Route exact path="/addNewEntry">
-                    <EntryForm />
-                </Route>
-                <Route exact path="/stats">
-                    <Stats />
-                </Route>
-            </JournalProvider>
+      <main>
+      
+        <Switch>
+          <Route path="/" exact>
+            {isLoggedIn ? <JournalList /> : <Redirect to="/login" />}
+          </Route>
 
-            <Route exact path="/logout">
-                <Header />
-            </Route>
+          <Route path="/journalEntry/:journalEntryId">
+            {isLoggedIn ? <JournalEntryPreview /> : <Redirect to="/login" />}
+          </Route>
 
-
-        </>
-    )
-}
+          <Route path="/journalEntry/edit/:journalEntryId">
+            {isLoggedIn ? <JournalEntryUpdate /> : <Redirect to="/login" />}
+          </Route>
+  
+          <Route path="/add">
+            {isLoggedIn ? <JournalEntryCreate /> : <Redirect to="/login" />}
+          </Route>
+  
+          <Route path="/login">
+            <Login />
+          </Route>
+  
+          <Route path="/register">
+            <Register />
+          </Route>
+        </Switch>
+      </main>
+    );
+  };
