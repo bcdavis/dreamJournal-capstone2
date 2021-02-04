@@ -43,7 +43,7 @@ export const FirebaseProvider = (props) => {
     };
 
     const logout = () => {
-        return firebase.auth().singOut()
+        return firebase.auth().signOut()
         .then(() => {
             sessionStorage.clear();
             setIsLoggedIn(false);

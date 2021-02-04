@@ -9,7 +9,7 @@ export const NavBar = (props) => {
                 <Link className="navbar__link" to="/">Social Slasher</Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/profile">Logout</Link>
+                <Link className="navbar__link" to="/login">Logout</Link>
             </li>
         </ul>
     )

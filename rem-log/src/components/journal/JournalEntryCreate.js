@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import firebase from "firebase";
-import { addItem } from "./../../modules/APICalls";
+import { addItem } from "../modules/APICalls.js";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 
 export const JournalEntryCreate = () => {

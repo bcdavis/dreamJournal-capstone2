@@ -5,7 +5,7 @@ import App from './App';
 
 import { firebaseConfig } from "./components/fbAuth/firebaseConfig.js"; // need to install firebase
 import firebase from "firebase/app";
-import './custom.scss'; // bring in custom scss file, which also imports bootstrap.min.css
+import './scss/custom.scss'; // bring in custom scss file, which also imports bootstrap.min.css
 
 firebase.initializeApp(firebaseConfig); // initialize app with config file settings
 

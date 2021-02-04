@@ -3,7 +3,7 @@ Using Firebase as a JSON API with fetch calls
 */
 
 import firebase from "firebase/app";
-import { firebaseConfig } from "./../components/fbAuth/firebaseConfig";
+import { firebaseConfig } from "../fbAuth/firebaseConfig.js";
 
 console.log("fb",firebase);
 const dataURL = firebaseConfig.databaseURL;
@@ -14,7 +14,7 @@ export const getAll = () => {
 	//in the rules section of your Firebase Database, be sure to include 'indexOn` for the properties you will need for selection
 	// for example: only return items with a specific uid
 	/* 
-		"christList": {
+		"JournalList": {
 			".indexOn": ["uid"]
 		}
 	*/
@@ -33,7 +33,7 @@ export const getOneItem = (fbid) => {
 }
 
 export const addItem = (itemObj) => {
-	return fetch(`${dataURL}/christList.json`,{
+	return fetch(`${dataURL}/JournalList.json`,{
 		method:"POST",
 		headers: {
 			"Content-Type": "application/json"
@@ -48,7 +48,7 @@ export const updateItem = (itemObj) => {
 	const fbid = itemObj.fbid;
 	delete itemObj.fbid;
 
-	return fetch(`${dataURL}/christList/${fbid}.json`,{
+	return fetch(`${dataURL}/JournalList/${fbid}.json`,{
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json"
@@ -57,14 +57,14 @@ export const updateItem = (itemObj) => {
 	})	
 }
 
-export const updateChristList = (itemObj) => {
+export const updateJournalList = (itemObj) => {
 
 	//we don't want to add the firebase key to the item object on firebase(duplication of data) so, 
 	//make a reference to the fbid and then remove it from the object
 	const fbid = itemObj.fbid;
 	delete itemObj.fbid;
 
-	return fetch(`${dataURL}/christList/${fbid}.json`,{
+	return fetch(`${dataURL}/JournalList/${fbid}.json`,{
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json"
@@ -74,7 +74,7 @@ export const updateChristList = (itemObj) => {
 }
 
 export const deleteItem = (itemFBID) => {
-	return fetch(`${dataURL}/christList/${itemFBID}.json`,{
+	return fetch(`${dataURL}/JournalList/${itemFBID}.json`,{
 		method: "DELETE",
 		headers: {
 			"Content-Type": "application/json"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { getOneItem, updateItem } from "./../../modules/APICalls";
+import { getOneItem, updateItem } from "../modules/APICalls.js";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
 
 export const JournalEntryEdit = () => {

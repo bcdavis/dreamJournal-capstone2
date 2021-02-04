@@ -4,8 +4,10 @@ import { FirebaseContext } from "./fbAuth/FirebaseProvider.js";
 import Login from "./fbAuth/Login.js";
 import Register from "./fbAuth/Register.js";
 import { JournalList } from "./journal/JournalList.js";
-import { JournalListAddForm } from "./journal/JournalLIstAddForm.js";
-
+import { JournalEntryCreate } from "./journal/JournalEntryCreate.js";
+import { JournalEntryEdit } from "./journal/JournalEntryEdit.js";
+import { JournalEntryPreview } from "./journal/JournalEntryPreview.js";
+import { JournalStats } from "./journal/JournalStats.js";
 
 
 
@@ -24,12 +26,16 @@ export default function ApplicationViews() {
             {isLoggedIn ? <JournalEntryPreview /> : <Redirect to="/login" />}
           </Route>
 
-          <Route path="/journalEntry/edit/:journalEntryId">
-            {isLoggedIn ? <JournalEntryUpdate /> : <Redirect to="/login" />}
+          <Route path="/journalEntry/edit/:journalEntryId(\d+)">
+            {isLoggedIn ? <JournalEntryEdit /> : <Redirect to="/login" />}
           </Route>
   
           <Route path="/add">
             {isLoggedIn ? <JournalEntryCreate /> : <Redirect to="/login" />}
+          </Route>
+
+          <Route path="/stats">
+            {isLoggedIn ? <JournalStats /> : <Redirect to="/login" />}
           </Route>
   
           <Route path="/login">
